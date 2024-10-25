@@ -10,14 +10,17 @@
 typedef struct barrier_s {
     int n_threads;          // número de threads
     int count;              // contador de threads
+    sem_t semaforo;
 } barrier_t;          // tipo barrier_t 
 
 
 // inicializa a barreira, com n threads
-void init_barr( barrier_t *barr, int n );
+void init_barr(barrier_t *barr, int n);
 
 // espera por todas as threads
-void process_barrier( barrier_t *barr );
+void process_barrier(barrier_t *barr);
+
+void destroy_barr(barrier_t *barr);
 
 
 #endif // BARRIER_H
