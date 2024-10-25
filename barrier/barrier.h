@@ -1,11 +1,13 @@
 #ifndef BARRIER_H
 #define BARRIER_H
 
-#include <pthread.h>
-#include <semaphore.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <semaphore.h>
 
 typedef struct barrier_s {
     int count;          // Contador de processos que chegaram à barreira
