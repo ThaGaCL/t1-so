@@ -19,58 +19,53 @@ NÃO serão aceitos trabalhos com mais de 2 alunos.
 ---------------------------------
 
 Objetivos:
-// Trabalhar com processos, semaforos do SO,
-// alocar e usar "shared memory" entre os processos,
-// fazer implementação de 
-//   - uma primitiva de barreira para
-//     um conjunto de processos
-//   - uma primitiva de fila FIFO para processos
-//  Implementar tudo isso em um sistema de processos
-//  e demonstrar que funciona
+- Trabalhar com processos, semaforos do SO,
+- alocar e usar "shared memory" entre os processos,
+- fazer implementação de 
+- uma primitiva de barreira para
+- um conjunto de processos
+- uma primitiva de fila FIFO para processos
+- Implementar tudo isso em um sistema de processos
+- demonstrar que funciona
 
-// Esse trabalho será composto de 2 partes
-//   A parte A) 
-//   deve implementar uma primitiva de barreira para
-//     sincronizar um conjunto de processos
-//     verificar a descriçao mais detalhada
-//     dessa primitiva (estrutura e funcoes)
-//     conforme descrito no 
-//     "Exercício 7: barreira para processos"
-//     
-//   A parte B) 
-//   deve implementar uma primitiva de fila FIFO 
-//     para processos o mesmo conjunto de processos
-//     verificar a descriçao mais detalhada
-//     dessa primitiva (estrutura e funcoes)
-//     conforme descrito no 
-//     "Exercício 6: FIFO Queue de processos (versao 1.2)"
-//     ou mais recente, caso exista
-//
-//   Juntar as duas partes no mesmo programa fonte
-//   os processos devem executar 
-//       a parte A) e depois a parte B)
-//
-//   Preparar um bom RELATORIO
-//
-//   Em breve poderemos colocar aqui mais detalhes
-//   do que deve ser entregue, mas a especificacao
-//   segue o que eh dito acima e nos exercicios
-//     "Exercício 7: barreira para processos"
-//     e
-//     "Exercício 6: FIFO Queue de processos (versao 1.2)"
-//     ou mais recente, caso exista
-//
-//   MAIS detalhes de implementação
-//   ------------------------------
-//   
-//   O processo 0 e seus filhos deve funcionar como descrito acima
-//   e nos exercicios de barreira de processos e fila fifo de processos
-//
-//   porém como o exercicio de fila fifo de processos era APENAS um exercicio
-//   ele nao detalhou muito sobre o que os processos devem fazer
-//   na parte da fila fifo. 
-//   Entao esses detalhes sao apresentados ABAIXO: 
-//       
+Esse trabalho será composto de 2 partes
+  A parte A) 
+  deve implementar uma primitiva de barreira para
+    sincronizar um conjunto de processos
+    verificar a descriçao mais detalhada
+    dessa primitiva (estrutura e funcoes)
+    conforme descrito no 
+    "Exercício 7: barreira para processos"
+    
+  A parte B) 
+  deve implementar uma primitiva de fila FIFO 
+    para processos o mesmo conjunto de processos
+    verificar a descriçao mais detalhada
+    dessa primitiva (estrutura e funcoes)
+    conforme descrito no 
+    "Exercício 6: FIFO Queue de processos (versao 1.2)"
+    ou mais recente, caso exista
+  Juntar as duas partes no mesmo programa fonte
+  os processos devem executar 
+      a parte A) e depois a parte B)
+  Preparar um bom RELATORIO
+  Em breve poderemos colocar aqui mais detalhes
+  do que deve ser entregue, mas a especificacao
+  segue o que eh dito acima e nos exercicios
+    "Exercício 7: barreira para processos"
+    e
+    "Exercício 6: FIFO Queue de processos (versao 1.2)"
+    ou mais recente, caso exista
+  MAIS detalhes de implementação
+  ------------------------------
+  
+  O processo 0 e seus filhos deve funcionar como descrito acima
+  e nos exercicios de barreira de processos e fila fifo de processos
+  porém como o exercicio de fila fifo de processos era APENAS um exercicio
+  ele nao detalhou muito sobre o que os processos devem fazer
+  na parte da fila fifo. 
+  Entao esses detalhes sao apresentados ABAIXO: 
+      
    Ao sair da barreira os processos devem se dirigir a parte do codigo
 que usa a fila fifo (como uma fila de uso de um recurso em ordem FIFO).
 Como foi definido no exercicio o uso do recurso exclusivo em ordem FIFO
