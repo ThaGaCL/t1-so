@@ -19,8 +19,8 @@ void process_barrier(barrier_t *barr) {
             sem_post(&barr->semaforo);
         }
     }
+    
     sem_post(&barr->mutex); // Sair da seção crítica
-
     sem_wait(&barr->semaforo); // Esperar ser liberado
 }
 
