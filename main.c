@@ -8,21 +8,23 @@ int s(){
 }
 
 int main(){
-
     srand(0);
+    // Processo Pi onde Pi é seu número lógico 
+    int Pi;
+    scanf("%d", &Pi);
     //   1) Processo pai cria estruturas compartilhadas,
     //      inicializa a barreira e a fila fifo,
     //      e cria os filhos
-    barrier_t *barreira;
-    FifoQT* fila;
+    barrier_t *barreira = malloc(sizeof(barrier_t));
+    FifoQT* fila = malloc(sizeof(FifoQT));
+    init_barr(barreira, Pi);
+    init_fifoQ(fila);
     //   2) Todos os processos chegam na barreira
         
     //   3) Ao acordar da barreira um processo deve se dirigir 
     //      ao loop de usos FIFO de recurso.
 
-    // Processo Pi onde Pi é seu número lógico 
-    int Pi;
-    scanf("%d", &Pi);
+
 
     for(int i = 0; i < Pi; i++){
         for(int uso = 0; uso < 3; uso++){
@@ -57,6 +59,6 @@ int main(){
             printf("Processo %d terminando\n", i);
     }
 
-    
+    destroy_barr(barreira);
 
 }

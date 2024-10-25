@@ -13,7 +13,6 @@ typedef struct barrier_s {
     sem_t semaforo;
 } barrier_t;          // tipo barrier_t 
 
-
 // inicializa a barreira, com n threads
 void init_barr(barrier_t *barr, int n);
 
