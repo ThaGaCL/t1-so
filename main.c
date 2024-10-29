@@ -5,11 +5,10 @@
 #include <sys/wait.h>
 
 int s(){
-    return rand() % 3;
+    return rand() % 3 + 1;
 }
 
 int main(){
-    srand(0);
     // Processo Pi onde Pi é seu número lógico 
     int Pi;
     pid_t pid;
@@ -38,46 +37,42 @@ int main(){
 
     for(int i = 0; i < Pi; i++){
         if((pid = fork()) == 0){
+            srand(time(NULL) + i);
             int nProc = i + 1;
             for(int uso = 0; uso < 3; uso++){
-                    // (A) simula executar algo no (prologo)
-                    // int time = s();
-                    // printf( "Processo: %d Prologo: %d de %d segundos\n", i, uso, time);
-                    // sleep(time);
-                    // entra na fila de espera FIFO
-                    // ou passa direto se estiver vazia
-                    // ote que, conceitualmente
-                    // o primeiro que passar pela espera
-                    // estah DENTRO da fila, mas nao fica bloqueado
-                    // na espera, ele passa direto
-
-                    // (B) simula usar o recurso com exclusividade
-                    int time = s();
-                    printf( "Processo: %d USO: %d por %d segundos\n", nProc, uso, time);
-                    sleep(time);
-
-                    process_barrier(barreira); // Chamar a barreira
-
-                    // Esperar pelos processos filhos
-                    // for (int i = 0; i < Pi; i++) {
-                    //     wait(NULL);
-                    // }
-
-                    // liberaPrimeiro(&fila);
-                    // terminou de usar
-                    // ao chamar essa funcao o processo estah sinalizando
-                    // sua "saida" do uso
-                    // sinaliza e causa a liberacao do primeiro
-                    // da fila (caso haja processo esperando)
-                                            
-                    // (C) simula executar algo (epilogo)                          
-                    // time = s();
-                    // printf( "Processo: %d Epilogo: %d de %d segundos\n", i, uso, time);
-                    // sleep(time); 
-                    printf("aaaaaaa\n");                                 
-                }
-                printf("Processo %d terminando\n", i);
-                exit(0);
+                // (A) simula executar algo no (prologo)
+                // int time = s();
+                // printf( "Processo: %d Prologo: %d de %d segundos\n", i, uso, time);
+                // sleep(time);
+                // entra na fila de espera FIFO
+                // ou passa direto se estiver vazia
+                // ote que, conceitualmente
+                // o primeiro que passar pela espera
+                // estah DENTRO da fila, mas nao fica bloqueado
+                // na espera, ele passa direto
+                // (B) simula usar o recurso com exclusividade
+                int time = s();
+                printf( "Processo: %d USO: %d por %d segundos\n", nProc, uso, time);
+                sleep(time);
+                process_barrier(barreira); // Chamar a barreira
+                // Esperar pelos processos filhos
+                // for (int i = 0; i < Pi; i++) {
+                //     wait(NULL);
+                // }
+                // liberaPrimeiro(&fila);
+                // terminou de usar
+                // ao chamar essa funcao o processo estah sinalizando
+                // sua "saida" do uso
+                // sinaliza e causa a liberacao do primeiro
+                // da fila (caso haja processo esperando)
+                                        
+                // (C) simula executar algo (epilogo)                          
+                // time = s();
+                // printf( "Processo: %d Epilogo: %d de %d segundos\n", i, uso, time);
+                // sleep(time);                                  
+            }
+            printf("Processo %d terminando\n", i);
+            exit(0);
         }
     }
 
