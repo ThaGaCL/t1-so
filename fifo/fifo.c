@@ -1,11 +1,16 @@
 #include "fifo.h"
 
-void init_fifoQ( FifoQT *F ){
-    F->n = 0;
-    F->count = 0;
+void init_fifoQ(FifoQT *F) {
+    F->head = NULL;
+    F->tail = NULL;
+    sem_init(&F->mutex, 1, 1); // Inicializa o semáforo mutex_f
 }
 
-void espera(FifoQT *F){}
+void espera(FifoQT *F) {
+    sem_wait(&F->mutex);
+}
 
-void liberaPrimeiro( FifoQT *F){}
+void liberaPrimeiro(FifoQT *F) {
+    sem_post(&F->mutex);
+}
 

@@ -4,10 +4,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct FifoQ_s {
-    int n;          // número de processos na fila
-    int count;      // contador de processos
-} FifoQT;          // tipo FifoQT
+#include <stdio.h>
+#include <stdlib.h>
+#include <semaphore.h>
+#include <unistd.h>
+
+typedef struct Node {
+    pid_t pid;         // Identificador do processo
+    struct Node *next;       // Ponteiro para o próximo nó
+} Node;
+
+typedef struct FifoQT {
+    Node *head;              // Início da fila
+    Node *tail;              // Fim da fila
+    sem_t mutex;             // Semáforo para controle de acesso à fila
+} FifoQT;
 
 void espera(FifoQT *F);  // processo chamador deve esperar na fila F
 

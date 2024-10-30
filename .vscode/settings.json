@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "barrier.h": "c",
+        "stdlib.h": "c",
+        "fifo.h": "c"
+    }
+}
