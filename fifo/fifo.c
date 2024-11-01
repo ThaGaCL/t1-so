@@ -3,7 +3,7 @@
 void init_fifoQ(FifoQT *F) {
     F->head = NULL;
     F->tail = NULL;
-    sem_init(&F->mutex, 1, 1); // Inicializa o semáforo mutex_f
+    sem_init(&F->mutex, 1, 1); // Inicializa o semáforo mutex
 }
 
 void espera(FifoQT *F) {
