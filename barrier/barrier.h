@@ -1,3 +1,6 @@
+// Trabalho 1 de Sistemas Operacionais
+// André Gauer Thomal e Thales Gabriel Carvalho de Lima
+
 #ifndef BARRIER_H
 #define BARRIER_H
 

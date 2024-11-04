@@ -1,8 +1,8 @@
+// Trabalho 1 de Sistemas Operacionais
+// André Gauer Thomal e Thales Gabriel Carvalho de Lima
+
 #ifndef FIFO_H
 #define FIFO_H
-
-#include <stdio.h>
-#include <stdlib.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,9 +18,10 @@ typedef struct FifoQT {
     Node *head;              // Início da fila
     Node *tail;              // Fim da fila
     sem_t mutex;             // Semáforo para controle de acesso à fila
+    sem_t mutex2;            // Semáforo para alteração da fila
 } FifoQT;
 
-void espera(FifoQT *F);  // processo chamador deve esperar na fila F
+void espera(FifoQT *F, Node *nos, int nProc);  // processo chamador deve esperar na fila F
 
 void liberaPrimeiro( FifoQT *F); // libera o primeiro processo que esteja  
                                 // "esperando" na fila F

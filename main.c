@@ -1,8 +1,14 @@
+// Trabalho 1 de Sistemas Operacionais
+// André Gauer Thomal e Thales Gabriel Carvalho de Lima
+
 #include "fifo/fifo.h"
 #include "barrier/barrier.h"
 #include <time.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/mman.h>
+
+#define MAX_NODES 200
 
 int generate_rand(){
     return rand() % 3 + 1;
@@ -14,6 +20,7 @@ int main(int argc, char* argv[]){
     pid_t pid;
     barrier_t *barreira;
     FifoQT *fila;
+    Node* nos;
 
     if(argc < 2){
         printf("Uso correto ./t1 <numero de processos>\n");
@@ -44,6 +51,7 @@ int main(int argc, char* argv[]){
     // Aloca o espaço na memória compartilhada para as structs
     barreira = (barrier_t *)shmat(shm_id, NULL, 0);
     fila = (FifoQT *)shmat(shm_id_2, NULL, 0);
+    nos = mmap(NULL, sizeof(Node) * MAX_NODES, PROT_READ|PROT_WRITE, MAP_ANON|MAP_SHARED, -1, 0);
 
     // Inicializa as structs
     init_barr(barreira, Pi);
@@ -83,7 +91,8 @@ int main(int argc, char* argv[]){
         printf("Processo: %d Prologo: %d de %d segundos\n", nProc, uso, time);
         sleep(time);
         // entra na fila de espera FIFO
-        espera(fila);
+        espera(fila, nos, nProc);
+        // printf("saiu da espera\n");
 
         // (B) simula usar o recurso com exclusividade
         time = generate_rand();
@@ -111,6 +120,7 @@ int main(int argc, char* argv[]){
     shmdt(fila);
     shmctl(shm_id, IPC_RMID, NULL);
     shmctl(shm_id_2, IPC_RMID, NULL);
+    munmap(nos, sizeof(Node) * MAX_NODES);
 
     return 0;
 }
